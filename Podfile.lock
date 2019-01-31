@@ -29,15 +29,15 @@ PODS:
   - FirebaseAnalytics (4.0.5):
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
     - nanopb (~> 0.3)
   - FirebaseCore (4.0.13):
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
   - FirebaseInstanceID (2.0.8):
     - FirebaseCore (~> 4.0)
   - GDataXML-HTML (1.3.0)
   - GoogleToolboxForMac/Defines (2.1.3)
-  - GoogleToolboxForMac/NSData+zlib (2.1.3):
+  - "GoogleToolboxForMac/NSData+zlib (2.1.3)":
     - GoogleToolboxForMac/Defines (= 2.1.3)
   - HexColors (2.3.0)
   - MMDrawerController (0.5.7):
@@ -45,7 +45,7 @@ PODS:
     - MMDrawerController/MMDrawerBarButtonItem (= 0.5.7)
     - MMDrawerController/MMDrawerVisualStates (= 0.5.7)
     - MMDrawerController/Subclass (= 0.5.7)
-  - MMDrawerController+Storyboard (0.0.2):
+  - "MMDrawerController+Storyboard (0.0.2)":
     - MMDrawerController
   - MMDrawerController/Core (0.5.7)
   - MMDrawerController/MMDrawerBarButtonItem (0.5.7):
@@ -73,10 +73,28 @@ DEPENDENCIES:
   - Firebase/Core
   - GDataXML-HTML (~> 1.3.0)
   - MMDrawerController (~> 0.5.7)
-  - MMDrawerController+Storyboard
+  - "MMDrawerController+Storyboard"
   - NKOColorPickerView (~> 0.5)
   - SDWebImage (~> 3.7.3)
   - TSMessages (from `https://github.com/KrauseFx/TSMessages.git`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - Crashlytics
+    - Fabric
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseInstanceID
+    - GDataXML-HTML
+    - GoogleToolboxForMac
+    - HexColors
+    - MMDrawerController
+    - "MMDrawerController+Storyboard"
+    - nanopb
+    - NKOColorPickerView
+    - SDWebImage
 
 EXTERNAL SOURCES:
   TSMessages:
@@ -99,7 +117,7 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   HexColors: 6ad3947c3447a055a3aa8efa859def096351fe5f
   MMDrawerController: 7a4cf8e25596bf2434e03ce50d22a8608ddee6a1
-  MMDrawerController+Storyboard: c98f86c0f32cdef1d466d19a7da3ad2fc6c6ac00
+  "MMDrawerController+Storyboard": c98f86c0f32cdef1d466d19a7da3ad2fc6c6ac00
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   NKOColorPickerView: 895ca86fe5bd16f27c311ce8f5888907efee29ad
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
@@ -107,4 +125,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 57b5a17989e8b469591924e010b487775e71527c
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.5.3

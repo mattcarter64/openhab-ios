@@ -42,7 +42,7 @@
 @property (nonatomic, retain) NSString *atmosphereTrackingId;
 @property (nonatomic, retain) UIRefreshControl *refreshControl;
 
-- (void)openHABTracked:(NSString *)openHABUrl;
+- (void)openHABTracked:(NSDictionary *)properties;
 - (void)sendCommand:(OpenHABItem *)item commandToSend:(NSString *)command;
 
 @end

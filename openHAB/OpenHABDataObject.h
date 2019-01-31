@@ -16,6 +16,7 @@
     NSMutableArray* sitemaps;
     NSString* openHABUsername;
     NSString* openHABPassword;
+    NSString* RTSPHost;
     OpenHABViewController* rootViewController;
 }
 
@@ -23,6 +24,7 @@
 @property (nonatomic, copy) NSMutableArray* sitemaps;
 @property (nonatomic, copy) NSString* openHABUsername;
 @property (nonatomic, copy) NSString* openHABPassword;
+@property (nonatomic, copy) NSString* RTSPHost;
 @property (nonatomic, retain) OpenHABViewController* rootViewController;
 @property (nonatomic) int openHABVersion;
 

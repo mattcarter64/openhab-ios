@@ -12,7 +12,9 @@
 @interface OpenHABSettingsViewController : UITableViewController <OpenHABAppDataDelegate, UITextFieldDelegate>
 {
     IBOutlet UITextField *localUrlTextField;
+    IBOutlet UITextField *localRtspHostTextField;
     IBOutlet UITextField *remoteUrlTextField;
+    IBOutlet UITextField *remoteRtspHostTextField;
     IBOutlet UITextField *usernameTextField;
     IBOutlet UITextField *passwordTextField;
     IBOutlet UISwitch *ignoreSSLSwitch;
@@ -21,7 +23,9 @@
     IBOutlet UITableView *settingsTableView;
     
     NSString *settingsLocalUrl;
+    NSString *settingsLocalRtspHost;
     NSString *settingsRemoteUrl;
+    NSString *settingsRemoteRtspHost;
     NSString *settingsUsername;
     NSString *settingsPassword;
     BOOL settingsIgnoreSSL;
@@ -30,14 +34,18 @@
 }
 
 @property (nonatomic, retain) UITextField *localUrlTextField;
+@property (nonatomic, retain) UITextField *localRtspHostTextField;
 @property (nonatomic, retain) UITextField *remoteUrlTextField;
+@property (nonatomic, retain) UITextField *remoteRtspHostTextField;
 @property (nonatomic, retain) UITextField *usernameTextField;
 @property (nonatomic, retain) UITextField *passwordTextField;
 @property (nonatomic, retain) UISwitch *ignoreSSLSwitch;
 @property (nonatomic, retain) UISwitch *demomodeSwitch;
 @property (nonatomic, retain) UISwitch *idleOffSwitch;
 @property (nonatomic, retain) NSString *settingsLocalUrl;
+@property (nonatomic, retain) NSString *settingsLocalRtspHost;
 @property (nonatomic, retain) NSString *settingsRemoteUrl;
+@property (nonatomic, retain) NSString *settingsRemoteRtspHost;
 @property (nonatomic, retain) NSString *settingsUsername;
 @property (nonatomic, retain) NSString *settingsPassword;
 @property (nonatomic, assign) BOOL settingsIgnoreSSL;

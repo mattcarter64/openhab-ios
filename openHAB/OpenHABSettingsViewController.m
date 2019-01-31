@@ -16,7 +16,7 @@
 @end
 
 @implementation OpenHABSettingsViewController
-@synthesize localUrlTextField, remoteUrlTextField, usernameTextField, passwordTextField, ignoreSSLSwitch, demomodeSwitch, idleOffSwitch, settingsLocalUrl, settingsRemoteUrl, settingsUsername, settingsPassword, settingsIgnoreSSL, settingsDemomode, settingsIdleOff;
+@synthesize localUrlTextField, localRtspHostTextField, remoteUrlTextField, remoteRtspHostTextField, usernameTextField, passwordTextField, ignoreSSLSwitch, demomodeSwitch, idleOffSwitch, settingsLocalUrl, settingsLocalRtspHost, settingsRemoteUrl, settingsRemoteRtspHost, settingsUsername, settingsPassword, settingsIgnoreSSL, settingsDemomode, settingsIdleOff;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -39,7 +39,9 @@
     [self loadSettings];
     [self updateSettingsUi];
     [localUrlTextField setDelegate:self];
+    [localRtspHostTextField setDelegate:self];
     [remoteUrlTextField setDelegate:self];
+    [remoteRtspHostTextField setDelegate:self];
     [usernameTextField setDelegate:self];
     [passwordTextField setDelegate:self];
     [demomodeSwitch addTarget:self action:@selector(demomodeSwitchChange:) forControlEvents:UIControlEventValueChanged];
@@ -91,7 +93,7 @@
             if (demomodeSwitch.isOn) {
                 ret = 1;
             } else {
-                ret = 5;
+                ret = 7;
             }
             break;
         case 1:
@@ -143,7 +145,9 @@
 - (void)updateSettingsUi
 {
     localUrlTextField.text = settingsLocalUrl;
+    localRtspHostTextField.text = settingsLocalRtspHost;
     remoteUrlTextField.text = settingsRemoteUrl;
+    remoteRtspHostTextField.text = settingsRemoteRtspHost;
     usernameTextField.text = settingsUsername;
     passwordTextField.text = settingsPassword;
     [ignoreSSLSwitch setOn:settingsIgnoreSSL];
@@ -160,7 +164,9 @@
 {
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     settingsLocalUrl = [prefs stringForKey:@"localUrl"];
+    settingsLocalRtspHost = [prefs stringForKey:@"localRtspHost"];
     settingsRemoteUrl = [prefs stringForKey:@"remoteUrl"];
+    settingsRemoteRtspHost = [prefs stringForKey:@"remoteRtspHost"];
     settingsUsername = [prefs stringForKey:@"username"];
     settingsPassword = [prefs stringForKey:@"password"];
     settingsIgnoreSSL = [prefs boolForKey:@"ignoreSSL"];
@@ -171,7 +177,9 @@
 - (void)updateSettings
 {
     settingsLocalUrl = localUrlTextField.text;
+    settingsLocalRtspHost = localRtspHostTextField.text;
     settingsRemoteUrl = remoteUrlTextField.text;
+    settingsRemoteRtspHost = remoteRtspHostTextField.text;
     settingsUsername = usernameTextField.text;
     settingsPassword = passwordTextField.text;
     settingsIgnoreSSL = ignoreSSLSwitch.isOn;
@@ -183,7 +191,9 @@
 {
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     [prefs setValue:settingsLocalUrl forKey:@"localUrl"];
+    [prefs setValue:settingsLocalRtspHost forKey:@"localRtspHost"];
     [prefs setValue:settingsRemoteUrl forKey:@"remoteUrl"];
+    [prefs setValue:settingsRemoteRtspHost forKey:@"remoteRtspHost"];
     [prefs setValue:settingsUsername forKey:@"username"];
     [prefs setValue:settingsPassword forKey:@"password"];
     [prefs setBool:settingsIgnoreSSL forKey:@"ignoreSSL"];

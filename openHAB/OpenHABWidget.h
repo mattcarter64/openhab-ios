@@ -24,6 +24,7 @@
     NSString *icon;
     NSString *type;
     NSString *url;
+    NSString *encoding;
     NSString *period;
     NSString *minValue;
     NSString *maxValue;
@@ -48,6 +49,7 @@
 @property (nonatomic, retain) NSString *icon;
 @property (nonatomic, retain) NSString *type;
 @property (nonatomic, retain) NSString *url;
+@property (nonatomic, retain) NSString *encoding;
 @property (nonatomic, retain) NSString *period;
 @property (nonatomic, retain) NSString *minValue;
 @property (nonatomic, retain) NSString *maxValue;

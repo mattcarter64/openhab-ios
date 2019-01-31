@@ -31,6 +31,7 @@
 #import "MMDrawerBarButtonItem.h"
 #import "OpenHABDrawerTableViewController.h"
 #import "MapViewTableViewCell.h"
+#import "VideoUITableViewCell.h"
 
 static NSString * const OpenHABViewControllerMapViewCellReuseIdentifier = @"OpenHABViewControllerMapViewCellReuseIdentifier";
 
@@ -303,6 +304,7 @@ static NSString * const OpenHABViewControllerMapViewCellReuseIdentifier = @"Open
     }
 
     GenericUITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+   
     // No icon is needed for image, video, frame and web widgets
     if (widget.icon != nil && !([cellIdentifier isEqualToString:@"ChartWidgetCell"] || [cellIdentifier isEqualToString:@"ImageWidgetCell"] || [cellIdentifier isEqualToString:@"VideoWidgetCell"] || [cellIdentifier isEqualToString:@"FrameWidgetCell"] || [cellIdentifier isEqualToString:@"WebWidgetCell"])) {
         
@@ -316,23 +318,34 @@ static NSString * const OpenHABViewControllerMapViewCellReuseIdentifier = @"Open
         
         [cell.imageView sd_setImageWithURL:[NSURL URLWithString:iconUrlString] placeholderImage:[UIImage imageNamed:@"blankicon.png"] options:0];
     }
+   
     if ([cellIdentifier isEqualToString:@"ColorPickerWidgetCell"]) {
         ((ColorPickerUITableViewCell*)cell).delegate = self;
     }
+    
     if ([cellIdentifier isEqualToString:@"ChartWidgetCell"]) {
         NSLog(@"Setting cell base url to %@", self.openHABRootUrl);
         ((ChartUITableViewCell*)cell).baseUrl = self.openHABRootUrl;
     }
+   
     if ([cellIdentifier isEqualToString:@"ChartWidgetCell"] || [cellIdentifier isEqualToString:@"ImageWidgetCell"]) {
         [(ImageUITableViewCell *)cell setDelegate:self];
     }
+    
     if ([cellIdentifier isEqualToString:@"FrameWidgetCell"]) {
         cell.backgroundColor = [UIColor groupTableViewBackgroundColor];
     } else {
         cell.backgroundColor = [UIColor whiteColor];
     }
+    
+    if ([cellIdentifier isEqualToString:@"VideoWidgetCell"]) {
+        [(VideoUITableViewCell *)cell setRTSPHost:[self appData].RTSPHost];
+    }
+
     cell.widget = widget;
+    
     [cell displayWidget];
+    
     // Check if this is not the last row in the widgets list
     if (indexPath.row < [currentPage.widgets count] - 1) {
         OpenHABWidget *nextWidget = [currentPage.widgets objectAtIndex:indexPath.row + 1];
@@ -342,6 +355,7 @@ static NSString * const OpenHABViewControllerMapViewCellReuseIdentifier = @"Open
             cell.separatorInset = UIEdgeInsetsMake(0, 60, 0, 0);
         }
     }
+   
     return cell;
 }
 
@@ -446,12 +460,19 @@ static NSString * const OpenHABViewControllerMapViewCellReuseIdentifier = @"Open
     [TSMessage showNotificationInViewController:self.navigationController title:@"Error" subtitle:[error localizedDescription] image:nil type:TSMessageNotificationTypeError duration:60.0 callback:nil buttonTitle:nil buttonCallback:nil atPosition:TSMessageNotificationPositionBottom canBeDismissedByUser:YES];
 }
 
-- (void)openHABTracked:(NSString *)openHABUrl
+- (void)openHABTracked:(NSDictionary *)properties
 {
-    NSLog(@"OpenHABViewController openHAB URL = %@", openHABUrl);
+    NSLog(@"OpenHABViewController: openHABTracked: propertie = %@", [properties allValues]);
+   
+    NSString *openHABUrl = [properties objectForKey:@"url"];
+    
+    NSLog(@"OpenHABViewController: openHABTracked: openHAB URL = %@", openHABUrl);
+    
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     self.openHABRootUrl = openHABUrl;
     [[self appData] setOpenHABRootUrl:openHABRootUrl];
+    [[self appData] setRTSPHost:[properties objectForKey:@"rtsphost"]];
+    
     // Checking openHAB version
     NSURL *pageToLoadUrl = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"%@/rest/bindings", self.openHABRootUrl]];
     NSMutableURLRequest *pageRequest = [NSMutableURLRequest requestWithURL:pageToLoadUrl];
@@ -461,26 +482,29 @@ static NSString * const OpenHABViewControllerMapViewCellReuseIdentifier = @"Open
     AFRememberingSecurityPolicy *policy = [AFRememberingSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
     [policy setDelegate:self];
     currentPageOperation.securityPolicy = policy;
+  
     if (self.ignoreSSLCertificate) {
-        NSLog(@"Warning - ignoring invalid certificates");
+        NSLog(@"OpenHABViewController: openHABTracked: Warning - ignoring invalid certificates");
         currentPageOperation.securityPolicy.validatesDomainName = NO;
         currentPageOperation.securityPolicy.allowInvalidCertificates = YES;
         versionPageOperation.securityPolicy.allowInvalidCertificates = YES;
         versionPageOperation.securityPolicy.validatesDomainName = NO;
     }
+   
     [versionPageOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"This is an openHAB 2.X");
+        NSLog(@"OpenHABViewController: openHABTracked: This is an openHAB 2.X");
         [[self appData] setOpenHABVersion:2];
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         [self selectSitemap];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error){
-        NSLog(@"This is an openHAB 1.X");
+        NSLog(@"OpenHABViewController: openHABTracked: This is an openHAB 1.X");
         [[self appData] setOpenHABVersion:1];
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        NSLog(@"Error:------>%@", [error description]);
-        NSLog(@"error code %ld",(long)[operation.response statusCode]);
+        NSLog(@"OpenHABViewController: openHABTracked: Error:------>%@", [error description]);
+        NSLog(@"OpenHABViewController: openHABTracked: error code %ld",(long)[operation.response statusCode]);
         [self selectSitemap];
     }];
+    
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [versionPageOperation start];
 }

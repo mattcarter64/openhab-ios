@@ -10,7 +10,8 @@
 #import "Reachability+URL.h"
 
 @protocol OpenHABTrackerDelegate <NSObject>
-- (void)openHABTracked:(NSString *)openHABUrl;
+- (void)openHABTracked:(NSDictionary *)properties;
+- (void)trackedRtspHost:(NSString *)rtspHost;
 @optional
 - (void)openHABTrackingProgress:(NSString *)message;
 - (void)openHABTrackingError:(NSError *)error;
@@ -20,6 +21,8 @@
 @interface OpenHABTracker : NSObject <NSNetServiceDelegate, NSNetServiceBrowserDelegate> {
     NSString *openHABLocalUrl;
     NSString *openHABRemoteUrl;
+    NSString *localRtspHost;
+    NSString *remoteRtspHost;
     BOOL openHABDemoMode;
     NSNetService *netService;
     Reachability *reach;
@@ -30,6 +33,8 @@
 @property (nonatomic, assign) BOOL  openHABDemoMode;
 @property (nonatomic, retain) NSString *openHABLocalUrl;
 @property (nonatomic, retain) NSString *openHABRemoteUrl;
+@property (nonatomic, retain) NSString *localRtspHost;
+@property (nonatomic, retain) NSString *remoteRtspHost;
 @property (nonatomic, copy) NSNetService *netService;
 @property (nonatomic, retain) Reachability *reach;
 

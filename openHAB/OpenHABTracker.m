@@ -15,7 +15,7 @@
 #import "Reachability+URL.h"
 
 @implementation OpenHABTracker
-@synthesize openHABDemoMode, openHABLocalUrl, openHABRemoteUrl, delegate, netService, reach;
+@synthesize openHABDemoMode, openHABLocalUrl, openHABRemoteUrl, localRtspHost, remoteRtspHost, delegate, netService, reach;
 
 - (OpenHABTracker *)init
 {
@@ -24,6 +24,8 @@
     openHABDemoMode = [prefs boolForKey:@"demomode"];
     openHABLocalUrl = [prefs valueForKey:@"localUrl"];
     openHABRemoteUrl = [prefs valueForKey:@"remoteUrl"];
+    localRtspHost = [prefs valueForKey:@"localRtspHost"];
+    remoteRtspHost = [prefs valueForKey:@"remoteRtspHost"];
     return self;
 }
 
@@ -79,7 +81,10 @@
         [self.delegate openHABTrackingProgress:@"Connecting to local URL"];
     }
     NSString *openHABUrl = [self normalizeUrl:openHABLocalUrl];
-    [self trackedUrl:openHABUrl];
+    
+    NSDictionary *dict = @{@"url":openHABUrl, @"rtsphost":localRtspHost};
+
+    [self trackedUrl:dict];
 }
 
 - (void)trackedRemoteUrl
@@ -89,7 +94,8 @@
         if (self.delegate && [self.delegate respondsToSelector:@selector(openHABTrackingProgress:)]) {
             [self.delegate openHABTrackingProgress:@"Connecting to remote URL"];
         }
-        [self trackedUrl:openHABUrl];
+        NSDictionary *dict = @{@"url":openHABUrl, @"rtsphost":remoteRtspHost};
+        [self trackedUrl:dict];
     } else {
         if (self.delegate && [self.delegate respondsToSelector:@selector(openHABTrackingError:)]) {
             NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
@@ -105,7 +111,10 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(openHABTrackingProgress:)]) {
         [self.delegate openHABTrackingProgress:@"Connecting to discovered URL"];
     }
-    [self trackedUrl:discoveryUrl];
+
+    NSDictionary *dict = @{@"url":discoveryUrl};
+
+    [self trackedUrl:dict];
 }
 
 - (void)trackedDemoMode
@@ -113,13 +122,17 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(openHABTrackingProgress:)]) {
         [self.delegate openHABTrackingProgress:@"Running in demo mode. Check settings to disable demo mode."];
     }
-    [self trackedUrl:@"http://demo.openhab.org:8080"];
+    
+    NSDictionary *dict = @{@"url":@"http://demo.openhab.org:8080"};
+
+    [self trackedUrl:dict];
 }
 
-- (void)trackedUrl:(NSString *)trackedUrl
+- (void)trackedUrl:(NSDictionary *)properties;
 {
-    if (self.delegate)
-        [self.delegate openHABTracked:trackedUrl];
+    if (self.delegate) {
+        [self.delegate openHABTracked:properties];
+    }
 }
 
 - (void) reachabilityChanged: (NSNotification *)notification {
