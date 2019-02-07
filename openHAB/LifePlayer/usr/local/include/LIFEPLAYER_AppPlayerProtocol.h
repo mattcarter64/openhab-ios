@@ -48,7 +48,9 @@
  ** Setters / getters to provide access to player superclass 
  ** state tracking properties
  **/
+//-(void)setViewContentMode:(UIViewContentMode) viewContentMode;
 -(void)setPlayerView:(UIView*)view;
+//-(void)setCurrentVCPlaying:(UIViewController*)vc;
 -(void)setCurrentCameraByGuid:(NSString*)cameraGuid;
 -(NSString *)getCurrentCameraGuid;
 

@@ -4,6 +4,7 @@ import os
 import Foundation
 
 @objc class RtspPlayer: VideoPlayer, LIFEPLAYER_AppPlayerProtocol {
+    
     static let _sharedVideoPlayer = RtspPlayer()
     
     let restartTimeout = 3.0
@@ -28,7 +29,7 @@ import Foundation
         }
     }
     
-    @nonobjc override var viewContentMode: UIViewContentMode {
+    @nonobjc override var viewContentMode: UIView.ContentMode {
         set {
             super.viewContentMode = newValue
         }
@@ -268,4 +269,12 @@ import Foundation
         playerStatus = playerStateStop
         errorType = ""
     }
+    
+//    func setViewContentMode(_ viewContentMode: UIView.ContentMode) {
+//        //
+//    }
+//    
+//    func setCurrentVCPlaying(_ vc: UIViewController!) {
+//        //
+//    }
 }

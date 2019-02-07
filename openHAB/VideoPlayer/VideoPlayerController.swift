@@ -11,7 +11,7 @@ import UIKit
 
 @objc class VideoPlayerController: UIViewController {
     
-    var player: VideoPlayer?
+    @objc var player: VideoPlayer?
     
     override func viewDidLoad() {
        
