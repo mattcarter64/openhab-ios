@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		13718D872200B01D00C9BFC4 /* libLifePlayer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13718D7F2200B01D00C9BFC4 /* libLifePlayer.a */; };
-		13718D882200B01D00C9BFC4 /* version.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13718D862200B01D00C9BFC4 /* version.txt */; };
+		1317C468220CC7FF00AABADC /* libLifePlayer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1317C466220CC7FF00AABADC /* libLifePlayer.a */; };
+		1317C469220CC80000AABADC /* version.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1317C467220CC7FF00AABADC /* version.txt */; };
 		13718D942200BCE800C9BFC4 /* VideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 13718D8D2200BCE800C9BFC4 /* VideoPlayer.m */; };
 		13718D952200BCE800C9BFC4 /* HLSMoviePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 13718D8F2200BCE800C9BFC4 /* HLSMoviePlayer.m */; };
 		13718D9A2200DD7E00C9BFC4 /* RtspPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13718D992200DD7E00C9BFC4 /* RtspPlayer.swift */; };
@@ -104,11 +104,11 @@
 
 /* Begin PBXFileReference section */
 		0B8ADF5EDF627447F5C32ADF /* Pods-openHAB.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openHAB.debug.xcconfig"; path = "Pods/Target Support Files/Pods-openHAB/Pods-openHAB.debug.xcconfig"; sourceTree = "<group>"; };
-		13718D7F2200B01D00C9BFC4 /* libLifePlayer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLifePlayer.a; sourceTree = "<group>"; };
-		13718D832200B01D00C9BFC4 /* LIFEPLAYER_AppPlayerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LIFEPLAYER_AppPlayerProtocol.h; sourceTree = "<group>"; };
-		13718D842200B01D00C9BFC4 /* LIFEPLAYER_DLPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LIFEPLAYER_DLPlayer.h; sourceTree = "<group>"; };
-		13718D852200B01D00C9BFC4 /* LIFEPLAYER_DLPlayerTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LIFEPLAYER_DLPlayerTypes.h; sourceTree = "<group>"; };
-		13718D862200B01D00C9BFC4 /* version.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = version.txt; sourceTree = "<group>"; };
+		1317C463220CC7FF00AABADC /* RTSPPLAYER_DLPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTSPPLAYER_DLPlayer.h; sourceTree = "<group>"; };
+		1317C464220CC7FF00AABADC /* RTSPPLAYER_DLPlayerTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTSPPLAYER_DLPlayerTypes.h; sourceTree = "<group>"; };
+		1317C465220CC7FF00AABADC /* RTSPPLAYER_AppPlayerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTSPPLAYER_AppPlayerProtocol.h; sourceTree = "<group>"; };
+		1317C466220CC7FF00AABADC /* libLifePlayer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLifePlayer.a; sourceTree = "<group>"; };
+		1317C467220CC7FF00AABADC /* version.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = version.txt; sourceTree = "<group>"; };
 		13718D8C2200BCE800C9BFC4 /* VideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayer.h; sourceTree = "<group>"; };
 		13718D8D2200BCE800C9BFC4 /* VideoPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayer.m; sourceTree = "<group>"; };
 		13718D8E2200BCE800C9BFC4 /* HLSMoviePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLSMoviePlayer.h; sourceTree = "<group>"; };
@@ -253,10 +253,10 @@
 			files = (
 				DFB2622D18830A3600D3244D /* CoreGraphics.framework in Frameworks */,
 				DFB2622B18830A3600D3244D /* Foundation.framework in Frameworks */,
-				13718D872200B01D00C9BFC4 /* libLifePlayer.a in Frameworks */,
 				240E752E32702103C7E74188 /* Pods_openHAB.framework in Frameworks */,
 				DFE10414197415F900D94943 /* Security.framework in Frameworks */,
 				DFB2622F18830A3600D3244D /* UIKit.framework in Frameworks */,
+				1317C468220CC7FF00AABADC /* libLifePlayer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,38 +273,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		13718D7E2200B01D00C9BFC4 /* LifePlayer */ = {
+		1317C45F220CC7FF00AABADC /* RtspPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				13718D7F2200B01D00C9BFC4 /* libLifePlayer.a */,
-				13718D802200B01D00C9BFC4 /* usr */,
-				13718D862200B01D00C9BFC4 /* version.txt */,
+				1317C460220CC7FF00AABADC /* usr */,
+				1317C466220CC7FF00AABADC /* libLifePlayer.a */,
+				1317C467220CC7FF00AABADC /* version.txt */,
 			);
-			path = LifePlayer;
-			sourceTree = "<group>";
+			name = RtspPlayer;
+			path = openHAB/RtspPlayer;
+			sourceTree = SOURCE_ROOT;
 		};
-		13718D802200B01D00C9BFC4 /* usr */ = {
+		1317C460220CC7FF00AABADC /* usr */ = {
 			isa = PBXGroup;
 			children = (
-				13718D812200B01D00C9BFC4 /* local */,
+				1317C461220CC7FF00AABADC /* local */,
 			);
 			path = usr;
 			sourceTree = "<group>";
 		};
-		13718D812200B01D00C9BFC4 /* local */ = {
+		1317C461220CC7FF00AABADC /* local */ = {
 			isa = PBXGroup;
 			children = (
-				13718D822200B01D00C9BFC4 /* include */,
+				1317C462220CC7FF00AABADC /* include */,
 			);
 			path = local;
 			sourceTree = "<group>";
 		};
-		13718D822200B01D00C9BFC4 /* include */ = {
+		1317C462220CC7FF00AABADC /* include */ = {
 			isa = PBXGroup;
 			children = (
-				13718D832200B01D00C9BFC4 /* LIFEPLAYER_AppPlayerProtocol.h */,
-				13718D842200B01D00C9BFC4 /* LIFEPLAYER_DLPlayer.h */,
-				13718D852200B01D00C9BFC4 /* LIFEPLAYER_DLPlayerTypes.h */,
+				1317C463220CC7FF00AABADC /* RTSPPLAYER_DLPlayer.h */,
+				1317C464220CC7FF00AABADC /* RTSPPLAYER_DLPlayerTypes.h */,
+				1317C465220CC7FF00AABADC /* RTSPPLAYER_AppPlayerProtocol.h */,
 			);
 			path = include;
 			sourceTree = "<group>";
@@ -481,8 +482,8 @@
 		DFB2623018830A3600D3244D /* openHAB */ = {
 			isa = PBXGroup;
 			children = (
+				1317C45F220CC7FF00AABADC /* RtspPlayer */,
 				13718D8B2200BCE800C9BFC4 /* VideoPlayer */,
-				13718D7E2200B01D00C9BFC4 /* LifePlayer */,
 				656916D81FCB82BC00667B2A /* GoogleService-Info.plist */,
 				653C09D41EAD691A00BA4C4A /* openHAB.entitlements */,
 				DF4B84051885AD4600F34902 /* Images */,
@@ -689,12 +690,12 @@
 				DF05FF171896594F00FF2F9B /* glyphicons_212_down_arrow@2x.png in Resources */,
 				DF05FF191896595600FF2F9B /* glyphicons_213_up_arrow@2x.png in Resources */,
 				DF05FF1B189659AF00FF2F9B /* glyphicons_432_plus@2x.png in Resources */,
-				13718D882200B01D00C9BFC4 /* version.txt in Resources */,
 				DF05FF1D189659C500FF2F9B /* glyphicons_433_minus@2x.png in Resources */,
 				DFB2624618830A3600D3244D /* Images.xcassets in Resources */,
 				653C09D71EAE4C0000BA4C4A /* icon-29x29.png in Resources */,
 				DFB2623518830A3600D3244D /* InfoPlist.strings in Resources */,
 				653C09D81EAE4C0000BA4C4A /* icon-76x76.png in Resources */,
+				1317C469220CC80000AABADC /* version.txt in Resources */,
 				A3F4C3A71A49A6AC0019A09F /* launchImage.png in Resources */,
 				DFDF45311932042B00A6E581 /* legal.rtf in Resources */,
 				A3F4C3A31A49A5090019A09F /* Main.storyboard in Resources */,
@@ -1011,7 +1012,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/openHAB/LifePlayer",
+					"$(PROJECT_DIR)/openHAB/RtspPlayer",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = es.spaphone.openhab.matt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1021,7 +1022,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.2;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/openHAB/LifePlayer/usr/local/include $(PROJECT_DIR)/openHAB/VideoPlayer";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/openHAB/RtspPlayer/usr/local/include $(PROJECT_DIR)/openHAB/VideoPlayer";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1044,7 +1045,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/openHAB/LifePlayer",
+					"$(PROJECT_DIR)/openHAB/RtspPlayer",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = es.spaphone.openhab.matt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1053,7 +1054,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "openHAB/VideoPlayer/openHAB-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.2;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/openHAB/LifePlayer/usr/local/include $(PROJECT_DIR)/openHAB/VideoPlayer";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/openHAB/RtspPlayer/usr/local/include $(PROJECT_DIR)/openHAB/VideoPlayer";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

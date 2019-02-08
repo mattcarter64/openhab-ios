@@ -4,8 +4,8 @@
 
 #import "VideoPlayer.h"
 #import "HLSMoviePlayer.h"
-#import "LIFEPLAYER_AppPlayerProtocol.h"
-#import "LIFEPLAYER_DLPlayer.h"
+#import "RTSPPLAYER_AppPlayerProtocol.h"
+#import "RTSPPLAYER_DLPlayer.h"
 #import "Reachability.h"
 
 

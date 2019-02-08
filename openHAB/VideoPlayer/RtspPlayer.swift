@@ -3,7 +3,7 @@
 import os
 import Foundation
 
-@objc class RtspPlayer: VideoPlayer, LIFEPLAYER_AppPlayerProtocol {
+@objc class RtspPlayer: VideoPlayer, RTSPPLAYER_AppPlayerProtocol {
     
     static let _sharedVideoPlayer = RtspPlayer()
     
@@ -11,8 +11,8 @@ import Foundation
     let startTimeout = 10.0
     let zoomLevels: [Float] = [1.0, 1.5, 2.0, 2.5, 3.0, 4.0]
     
-    lazy var lpDLPlayer: LIFEPLAYER_DLPlayer = {
-        return LIFEPLAYER_DLPlayer(appPlayer: self, restartTimeout: self.restartTimeout, startTimeout: self.startTimeout)
+    lazy var lpDLPlayer: RTSPPLAYER_DLPlayer = {
+        return RTSPPLAYER_DLPlayer(appPlayer: self, restartTimeout: self.restartTimeout, startTimeout: self.startTimeout)
     }()
     
     var cameraDict: [String:String] = [:]
